@@ -51,3 +51,19 @@ class LineToCircle {
         })
     }
 }
+class Stage {
+    constructor() {
+        this.canvas = document.createElement()
+        this.canvas.width = 2*r
+        this.canvas.height = 2*r
+        this.context = this.canvas.getContext('2d')
+        document.body.appendChild(this.canvas)
+        this.lineToCircle = new LineToCircle()
+    }
+    draw(context) {
+        this.lineToCircle.draw(context)
+    }
+    update() {
+        this.lineToCircle.update()
+    }
+}
