@@ -67,3 +67,22 @@ class Stage {
         this.lineToCircle.update()
     }
 }
+class Looper {
+    constructor() {
+        this.animated = false
+    }
+    start(startcb) {
+        if(!this.animated) {
+            this.animated = true
+            this.interval = setInterval(()=>{
+                startcb()
+            },50)
+        }
+    }
+    stop() {
+        if(this.animated) {
+            this.animated = false
+            clearInterval(this.interval)
+        }
+    }
+}
