@@ -49,7 +49,7 @@ class LineToCircle {
         this.points.forEach((point)=>{
             point.update()
         })
-        if(this.points.length > 0 && this.points[this.points.length-1].deg == 360) {
+        if(this.points.length > 0 && this.points[0].deg == 360) {
             stopcb()
         }
     }
