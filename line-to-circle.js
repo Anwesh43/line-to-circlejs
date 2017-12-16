@@ -67,8 +67,8 @@ class Stage {
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height)
         this.lineToCircle.draw(this.context)
     }
-    update() {
-        this.lineToCircle.update()
+    update(stopcb) {
+        this.lineToCircle.update(stopcb)
     }
 }
 class Looper {
