@@ -15,7 +15,7 @@ class LineToCirclePoint {
             this.setXY()
         }
         else {
-            this.x -= (2*Math.PI*r)/360
+            this.x += (2*Math.PI*r)/360
         }
     }
 }
@@ -26,7 +26,7 @@ class LineToCircle {
     }
     init() {
         for(var i=0;i<=360;i++) {
-            this.points.add(new LineToCirclePoint(i))
+            this.points.push(new LineToCirclePoint(i))
         }
     }
     draw(context) {
@@ -56,14 +56,15 @@ class LineToCircle {
 }
 class Stage {
     constructor() {
-        this.canvas = document.createElement()
-        this.canvas.width = 2*r
+        this.canvas = document.createElement('canvas')
+        this.canvas.width = 2*r+2*Math.PI*r
         this.canvas.height = 2*r
         this.context = this.canvas.getContext('2d')
         document.body.appendChild(this.canvas)
         this.lineToCircle = new LineToCircle()
     }
     draw() {
+        this.context.clearRect(0,0,this.canvas.width,this.canvas.height)
         this.lineToCircle.draw(this.context)
     }
     update() {
