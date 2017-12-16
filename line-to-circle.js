@@ -45,10 +45,13 @@ class LineToCircle {
         context.stroke()
         context.restore()
     }
-    update() {
+    update(stopcb) {
         this.points.forEach((point)=>{
             point.update()
         })
+        if(this.points.length > 0 && this.points[this.points.length-1].deg == 360) {
+            stopcb()
+        }
     }
 }
 class Stage {
@@ -60,8 +63,8 @@ class Stage {
         document.body.appendChild(this.canvas)
         this.lineToCircle = new LineToCircle()
     }
-    draw(context) {
-        this.lineToCircle.draw(context)
+    draw() {
+        this.lineToCircle.draw(this.context)
     }
     update() {
         this.lineToCircle.update()
@@ -85,4 +88,14 @@ class Looper {
             clearInterval(this.interval)
         }
     }
+}
+const stage = new Stage()
+const looper = new Looper()
+window.onmousedown = (event) => {
+    looper.start(()=>{
+        stage.draw()
+        stage.update(()=>{
+            looper.stop()
+        })
+    })
 }
